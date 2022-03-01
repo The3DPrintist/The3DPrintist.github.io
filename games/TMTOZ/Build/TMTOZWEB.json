@@ -1,0 +1,13 @@
+{
+"companyName": "DefaultCompany",
+"productName": "The Maniacal Thinkings Of Zack",
+"dataUrl": "TMTOZWEB.data.unityweb",
+"asmCodeUrl": "TMTOZWEB.asm.code.unityweb",
+"asmMemoryUrl": "TMTOZWEB.asm.memory.unityweb",
+"asmFrameworkUrl": "TMTOZWEB.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
