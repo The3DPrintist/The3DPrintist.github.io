@@ -35,20 +35,28 @@ p {color:#FFFFFF;font-family:Lato}
   text-align: center;
   border-radius: 5px;
   padding: 10px;
-  margin: 20px;
-  margin-top: 20px;
+  margin: 128px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.hline {
+  border-color: #DC3545;
+  margin-left: 128px;
+  margin-right: 128px;
 }
 
 </style>
 
-<div style="margin-left: 20px">
+<div style="margin-left: 128px">
+  <a id="top"></a>
   <h1 style="font-size:64px; color:#FFFFFF; font-weight: bold;">Zachary Snyder's Games</h1>
 </div>
 
 </head>
 
 <body style="background-color:#121212;">
-  <div style="margin-left: 20px">
+  <div style="margin-left: 128px">
   <p>Hi, please excuse the sub-par HTML. Here are my games, there is a little bit of everything.</p>
 
   <form method="post" action="https://zack3dprints.com/">
@@ -57,13 +65,13 @@ p {color:#FFFFFF;font-family:Lato}
 
   </div>
 
-<hr style="border-color: #DC3545; margin-left: 20px; margin-right: 20px">
+<hr class="hline">
 
 <!--games list starts here-->
 
 <div class="gameDiv">
   <h1>Vector</h1>
-  <p>This game was made earlier in 2019. It was designed to work on mobile devies, and works okay enough on WebGl. This is one of my favorite projects ive done but it is not completely finished, with the last few levels being unplayable. However, I still think this puzzle game is worth a play! (This game looks nicer in fullscreen, but it shows geometry that's offscreen during normal play.)</p>
+  <p>This game was made earlier in 2019. It was designed to work on mobile devies, and works okay enough on WebGl. This is one of my favorite projects ive done but it is not completely finished, with the last few levels being unplayable.</p>
 
   <div class="row">
     <div class="col" style="margin: 25px">
@@ -82,23 +90,7 @@ p {color:#FFFFFF;font-family:Lato}
   </form>
 </div>
 
-<div class="gameDiv">
-  <h1>Christmas Planet 2020</h1>
-  <p>This game was made in December 2020 In 3 hours, with 6 hours of debugging! :') It was made to be sent to friends and family instead of mailing a card. (This game is using newer WebGL features and may not work on some web browsers such as Internet Exprorer and Safari)</p>
-
-  <div class="row">
-    <div class="col" style="margin: 25px">
-      <img src="christmasplanet.png" class="rounded" style="margin: 0px; width:100%; height: auto">
-    </div>
-    <div class="col" style="margin: 25px">
-      <img src="christmasplanet2.png" class="rounded" style="margin: 0px; width:100%; height: auto">
-    </div>
-  </div>
-
-  <form method="post" action="http://zack3dprints.com/christmas2020">
-  <button type="submit" class="btn btn-outline-danger" style="margin: 10px">play</button>
-  </form>
-</div>
+<hr class="hline">
 
 <div class="gameDiv">
   <h1>Moustake</h1>
@@ -118,6 +110,48 @@ p {color:#FFFFFF;font-family:Lato}
   </form>
 </div>
 
+<hr class="hline">
+
+<div class="gameDiv">
+  <h1>Prime Folder</h1>
+  <p>This project is a demo showing an interesting expression of the randomness of prime numbers.</p>
+
+  <div class="row">
+    <div class="col" style="margin: 25px">
+      <img src="prime1.png" class="rounded" style="margin: 0px; width:100%; height: auto">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="prime2.png" class="rounded" style="margin: 0px; width:100%; height: auto">
+    </div>
+  </div>
+
+  <form method="post" action="https://zack3dprints.com/primefolder">
+  <button type="submit" class="btn btn-outline-danger" style="margin: 10px">play</button>
+  </form>
+
+</div>
+
+<hr class="hline">
+
+<div class="gameDiv">
+  <h1>Christmas Planet 2020</h1>
+  <p>This game was made in December 2020 In 3 hours, with 6 hours of debugging! :') It was made to be sent to friends and family instead of mailing a card. (This game is using newer WebGL features and may not work on some web browsers such as Internet Exprorer and Safari)</p>
+
+  <div class="row">
+    <div class="col" style="margin: 25px">
+      <img src="christmasplanet.png" class="rounded" style="margin: 0px; width:100%; height: auto">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="christmasplanet2.png" class="rounded" style="margin: 0px; width:100%; height: auto">
+    </div>
+  </div>
+
+  <form method="post" action="http://zack3dprints.com/christmas2020">
+  <button type="submit" class="btn btn-outline-danger" style="margin: 10px">play</button>
+  </form>
+</div>
+
+<hr class="hline">
 
 <div class="gameDiv">
   <h1>Christmas Card</h1>
@@ -137,29 +171,12 @@ p {color:#FFFFFF;font-family:Lato}
   </form>
 </div>
 
-<div class="gameDiv">
-  <h1>Prime Folder</h1>
-  <p>This project is a demo showing an interesting expression of the randomness of prime numbers.</p>
-
-  <div class="row">
-    <div class="col" style="margin: 25px">
-      <img src="prime1.png" class="rounded" style="margin: 0px; width:100%; height: auto">
-    </div>
-    <div class="col" style="margin: 25px">
-      <img src="prime2.png" class="rounded" style="margin: 0px; width:100%; height: auto">
-    </div>
-  </div>
-
-  <form method="post" action="http://zack3dprints.com/primefolder">
-  <button type="submit" class="btn btn-outline-danger" style="margin: 10px">play</button>
-  </form>
-
-</div>
+<hr class="hline">
 
 <!--scroll to top-->
-<div style="margin-left: 20px; margin-bottom: 20px">
-<a href="#title">
-<button type="submit" class="btn btn-outline-danger">^</button>
+<div style="margin-left: 128px; margin-bottom: 20px">
+<a href="#top">
+<button type="submit" class="btn btn-outline-danger">▲</button>
 </a>
 </div>
 
