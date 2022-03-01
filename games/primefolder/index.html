@@ -2,30 +2,30 @@
 <html lang="en-us">
   <head>
 
-  <style>
+    <style>
 
-  html {
-    scroll-behavior: smooth;
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  @font-face {
-    font-family: Lato;
-    src: url(https://zack3dprints.com/font/Lato-Regular.ttf);
-  }
+    @font-face {
+      font-family: Lato;
+      src: url(https://zack3dprints.com/font/Lato-Regular.ttf);
+    }
 
-  @font-face {
-    font-family: LatoB;
-    src: url(https://zack3dprints.com/font/Lato-Bold.ttf);
-  }
+    @font-face {
+      font-family: LatoB;
+      src: url(https://zack3dprints.com/font/Lato-Bold.ttf);
+    }
 
-  @font-face {
-    font-family: Simp;
-    src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
-  }
+    @font-face {
+      font-family: Simp;
+      src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
+    }
 
-  title {color:#FFFFFF;font-family:Lato}
-  p {color:#FFFFFF;font-family:Lato}
-  </style>
+    title {color:#FFFFFF;font-family:Lato}
+    p {color:#FFFFFF;font-family:Lato}
+    </style>
 
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -35,12 +35,12 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/VectorWeb.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Prime.json", {onProgress: UnityProgress});
     </script>
   </head>
   <body style="background-color:#121212;">
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 375px; height: 667px"></div>
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
