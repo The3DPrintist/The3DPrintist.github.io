@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+  h1 {color:#FFFFFF;font-family:Lato}
+  p {color:#FFFFFF;font-family:Lato}
+</style>
+
 <body style="background-color:#121212;">
-</body>
 
 <canvas id="myCanvas" width=400 height=240 style="border:8px solid #FFC833; border-radius: 5px;">
 Your browser does not support the canvas element.
@@ -25,7 +30,14 @@ setInterval(function(){
     y = 64 * Math.sin((x+offset)*0.025) + myCanvas.height/2
     ctx.fillRect(x,y,1,1);
   }
+
+  document.getElementById("demo").innerHTML = "offset = " + offset;
+
 }, 0);
 
 </script>
+
+<p id="demo"></p>
+</body>
+
 </html>
