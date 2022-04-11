@@ -1,8 +1,34 @@
-// ------------------------------------------------
-// BASIC SETUP
-// ------------------------------------------------
+let camera, scene, renderer;
+let mesh;
 
-window.addEventListener('resize', onWindowResize, false);
+init();
+animate();
+
+function init() {
+
+  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+  camera.position.z = 400;
+
+  scene = new THREE.Scene();
+
+  const texture = new THREE.TextureLoader().load('textures/crate.gif');
+
+  const geometry = new THREE.BoxGeometry(200, 200, 200);
+  const material = new THREE.MeshBasicMaterial({ map: texture });
+
+  mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  //
+
+  window.addEventListener('resize', onWindowResize);
+
+}
 
 function onWindowResize() {
 
@@ -13,50 +39,13 @@ function onWindowResize() {
 
 }
 
-// Create an empty scene
-var scene = new THREE.Scene();
+function animate() {
 
-// Create a basic perspective camera
-var camera = new THREE.PerspectiveCamera( 25, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.z = 4;
+  requestAnimationFrame(animate);
 
-// Create a renderer with Antialiasing
-var renderer = new THREE.WebGLRenderer({antialias:true});
+  mesh.rotation.x += 0.005;
+  mesh.rotation.y += 0.01;
 
-// Configure renderer clear color
-renderer.setClearColor("#000000");
-
-// Configure renderer size
-renderer.setSize( window.innerWidth, window.innerHeight );
-
-// Append Renderer to DOM
-document.body.appendChild( renderer.domElement );
-
-// ------------------------------------------------
-// FUN STARTS HERE
-// ------------------------------------------------
-
-// Create a Cube Mesh with basic material
-var geometry = new THREE.SphereGeometry(15, 32, 16);
-var material = new THREE.MeshLambertMaterial({ color: "#bb3e03" } );
-var cube = new THREE.Mesh( geometry, material );
-
-// Add cube to Scene
-scene.add( cube );
-
-const light = new THREE.PointLight(0xff0000, 1, 100);
-light.position.set(0, 50, 0);
-scene.add(light);
-
-// Render Loop
-var render = function () {
-  requestAnimationFrame( render );
-
-  cube.rotation.x += 0.0025
-  cube.rotation.y += 0.0025
-
-  // Render the scene
   renderer.render(scene, camera);
-};
 
-render();
+}
