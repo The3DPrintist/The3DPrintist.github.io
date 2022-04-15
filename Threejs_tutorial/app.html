@@ -48,6 +48,7 @@
             Mesh.rotation.x = -rotY * 3.1415 * 2;
 
             Mesh.children[0].children[0].rotation.x -= 0.05
+            Mesh.children[0].children[0].children[0].children[0].rotation.x -= 0.05
         }
         renderer.render(scene, camera);
     }
@@ -69,6 +70,19 @@
         rotX = -(e.clientX - window.innerWidth / 2) / (window.innerWidth * 2);
         rotY = -(e.clientY - window.innerHeight / 2) / (window.innerHeight * 2);
     });
+
+    function setMaterialsOnGLTF(object3D){
+        if (object3D.material) {
+            const newMaterial = new THREE.MeshPhongMaterial({ map: object3D.material.map });
+            object3D.material = newMaterial;
+        }
+        if (!object3D.children) {
+            return;
+        }
+        for (let i = 0; i < object3D.children.length; i++) {
+            Utilities.setMaterialsOnGLTF(object3D.children[i]);
+        }
+    }
 
     var rotX = 0;
     var rotY = 0;
