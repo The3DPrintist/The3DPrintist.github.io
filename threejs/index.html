@@ -15,8 +15,9 @@
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     const scene = new THREE.Scene();
-    let Mesh;
+    var Mesh;
     let light;
+    var screenmat;
 
     function init() {
         scene.background = new THREE.Color('black');
@@ -49,6 +50,8 @@
 
             Mesh.children[0].children[0].rotation.x -= 0.05
             Mesh.children[0].children[0].children[0].children[0].rotation.x -= 0.05
+
+            Mesh.children[0].children[12].material = screenmat
         }
         renderer.render(scene, camera);
     }
@@ -71,17 +74,21 @@
         rotY = -(e.clientY - window.innerHeight / 2) / (window.innerHeight * 2);
     });
 
-    function setMaterialsOnGLTF(object3D){
-        if (object3D.material) {
-            const newMaterial = new THREE.MeshPhongMaterial({ map: object3D.material.map });
-            object3D.material = newMaterial;
-        }
-        if (!object3D.children) {
-            return;
-        }
-        for (let i = 0; i < object3D.children.length; i++) {
-            Utilities.setMaterialsOnGLTF(object3D.children[i]);
-        }
+    function makegifmat(){
+        // Create video and play
+        let textureVid = document.createElement("video")
+        textureVid.src = `model/screen.mp4`; // transform gif to mp4
+        textureVid.loop = true;
+        textureVid.play();
+
+        // Load video texture
+        let videoTexture = new THREE.VideoTexture(textureVid);
+        videoTexture.format = THREE.RGBAFormat;
+        videoTexture.minFilter = THREE.NearestFilter;
+        videoTexture.maxFilter = THREE.NearestFilter;
+        videoTexture.generateMipmaps = false;
+
+        screenmat = new THREE.MeshBasicMaterial({ map: videoTexture });
     }
 
     var rotX = 0;
@@ -90,6 +97,9 @@
     init();
     setLight();
     loadGLTF();
+
+    makegifmat();
+
     animate();
 </script>
 </body>
