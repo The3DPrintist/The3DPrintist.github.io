@@ -264,6 +264,11 @@
         },
         {
             "doubleSided" : true,
+            "emissiveFactor" : [
+                0.034339822828769684,
+                0.02732088230550289,
+                0.025186866521835327
+            ],
             "extensions" : {
                 "KHR_materials_clearcoat" : {
                     "clearcoatFactor" : 0.5,
@@ -273,9 +278,9 @@
             "name" : "Material.006",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0,
-                    0,
-                    0,
+                    0.034339822828769684,
+                    0.02732088230550289,
+                    0.025186866521835327,
                     1
                 ],
                 "metallicFactor" : 0,

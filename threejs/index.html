@@ -6,21 +6,25 @@
         body { margin: 0; }
     </style>
 </head>
-<body>
-<!-- Three.js library -->
+<body style="background-color:#322F29;">
+    Test
 <script src="https://threejs.org/build/three.min.js"></script>
-<!-- GLTFLoader.js source -->
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
 <script>
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true});
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     const scene = new THREE.Scene();
     var Mesh;
     let light;
+
     var screenmat;
+    var textureVid;
+
+    var rotspeed = 0;
 
     function init() {
-        scene.background = new THREE.Color('black');
+        //scene.background = new THREE.Color('transparent');
+        renderer.setClearColor(0x000000, 0);
         camera.position.set(0, 0, 0);
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
@@ -45,11 +49,11 @@
     function animate() {
         requestAnimationFrame(animate);
         if (Mesh && Mesh.rotation) {
-            Mesh.rotation.y = -rotX * 3.1415 * 2;
-            Mesh.rotation.x = -rotY * 3.1415 * 2;
+            Mesh.rotation.y = -rotX * 3.1415 * 1;
+            Mesh.rotation.x = -rotY * 3.1415 * 1;
 
-            Mesh.children[0].children[0].rotation.x -= 0.05
-            Mesh.children[0].children[0].children[0].children[0].rotation.x -= 0.05
+            Mesh.children[0].children[0].rotation.x -= rotspeed
+            Mesh.children[0].children[0].children[0].children[0].rotation.x -= rotspeed
 
             Mesh.children[0].children[12].material = screenmat
         }
@@ -59,6 +63,13 @@
     window.addEventListener('resize', () => {
         resize();
     })
+
+    document.addEventListener(
+            "click",
+            event => {
+                playvid();
+            },
+    false);
 
     function resize() {
 
@@ -76,10 +87,10 @@
 
     function makegifmat(){
         // Create video and play
-        let textureVid = document.createElement("video")
+        textureVid = document.createElement("video")
         textureVid.src = `model/screen.mp4`; // transform gif to mp4
         textureVid.loop = true;
-        textureVid.play();
+        //textureVid.play();
 
         // Load video texture
         let videoTexture = new THREE.VideoTexture(textureVid);
@@ -91,6 +102,10 @@
         screenmat = new THREE.MeshBasicMaterial({ map: videoTexture });
     }
 
+    function playvid(){
+        textureVid.play();
+    }
+
     var rotX = 0;
     var rotY = 0;
 
@@ -98,8 +113,8 @@
     setLight();
     loadGLTF();
 
-    setTimeout(makegifmat, 500);
-    //makegifmat();
+    //setTimeout(playvid, 500);
+    makegifmat();
 
     animate();
 </script>
