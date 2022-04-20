@@ -7,12 +7,21 @@
     </style>
 </head>
 <body style="background-color:#322F29;">
-<script src="https://threejs.org/build/three.min.js"></script>
+<script src="https://threejs.org/build/three.js"></script>
 <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+<script type = module, src="https://github.com/mrdoob/three.js/tree/master/examples/jsm/postprocessing/CopyShader.js"></script>
+<script type = module, src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/jsm/postprocessing/EffectComposer.js"></script>
+<script type = module, src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/jsm/postprocessing/RenderPass.js"></script>
+<script type = module, src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/jsm/postprocessing/ShaderPass.js"></script>
+<script type = module, src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/jsm/postprocessing/OutlinePass.js"></script>
 <script>
+    
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true});
-    let width = 5
-    let height = window.innerWidth / (window.innerHeight/2)
+
+    let aspect = 4;
+    let width = 6;
+    let height = width/aspect;
+
     const camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 0.1, 100 );
     const scene = new THREE.Scene();
 
@@ -23,6 +32,17 @@
     var textureVid;
 
     var rotspeed = 0;
+
+    function out(){
+        // postprocessing
+        composer = new THREE.EffectComposer(renderer);
+
+        var renderPass = new THREE.RenderPass(scene, camera);
+        composer.addPass(renderPass);
+
+        outlinePass = new THREE.OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
+        composer.addPass(outlinePass);
+    }
 
     function init() {
         //scene.background = new THREE.Color('transparent');
@@ -47,6 +67,8 @@
             Mesh.position.set(0,0,-10);
             Mesh.children[0].children[1].material = new THREE.MeshBasicMaterial({ color: 0xB1AEA8}); //light
             Mesh.children[0].children[0].material = new THREE.MeshBasicMaterial({ color: 0x322F29}); //dark
+
+            //outlinePass.selectedObjects = [Mesh];
         });
     }
 
@@ -71,11 +93,8 @@
     })
 
     function resize() {
-
-        camera.aspect = window.innerWidth / (window.innerHeight/2);
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerWidth/2);
-
+        renderer.setSize(window.innerWidth, window.innerWidth/aspect);
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -90,6 +109,7 @@
     var rotlerpY = 0;
 
     init();
+    //out();
     resize();
     loadPD();
 
