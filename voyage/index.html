@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D Playdate</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body style="background-color:#322F29;">
+<script src="https://threejs.org/build/three.min.js"></script>
+<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true});
+    let width = 5
+    let height = window.innerWidth / (window.innerHeight/2)
+    const camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 0.1, 100 );
+    const scene = new THREE.Scene();
+
+    var Mesh;
+    let light;
+
+    var screenmat;
+    var textureVid;
+
+    var rotspeed = 0;
+
+    function init() {
+        //scene.background = new THREE.Color('transparent');
+        renderer.setClearColor(0x000000, 0);
+        camera.position.set(0, 0, 0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+    }
+
+    function setLight() {
+        const light = new THREE.AmbientLight(0xFFFFFF); // soft white light
+        //scene.add(light);
+    }
+
+    function loadPD() {
+        let balloonLoader = new THREE.GLTFLoader();
+
+        balloonLoader.load('./model/logo.gltf', (gltf) => {
+            Mesh = gltf.scene;
+            //Mesh.scale.set(1,1,1);
+            scene.add(Mesh);
+            Mesh.position.set(0,0,-10);
+            Mesh.children[0].children[1].material = new THREE.MeshBasicMaterial({ color: 0xB1AEA8}); //light
+            Mesh.children[0].children[0].material = new THREE.MeshBasicMaterial({ color: 0x322F29}); //dark
+        });
+    }
+
+    function lerp(start, end, amt) {
+        return (1 - amt) * start + amt * end
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        if (Mesh && Mesh.rotation) {
+
+            rotlerpX = lerp(rotlerpX, rotX, 0.1);
+            rotlerpY = lerp(rotlerpY, rotY, 0.1);
+            Mesh.rotation.y = -rotlerpX * 3.1415 * 0.25;
+            Mesh.rotation.x = -rotlerpY * 3.1415 * 0.25;
+        }
+        renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+        resize();
+    })
+
+    function resize() {
+
+        camera.aspect = window.innerWidth / (window.innerHeight/2);
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerWidth/2);
+
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        rotX = -(e.clientX - window.innerWidth / 2) / (window.innerWidth);
+        rotY = -(e.clientY - window.innerHeight / 2) / (window.innerHeight);
+    });
+
+    var rotX = Math.random()-0.5;
+    var rotY = Math.random()-0.5;
+
+    var rotlerpX = 0;
+    var rotlerpY = 0;
+
+    init();
+    resize();
+    loadPD();
+
+    animate();
+</script>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
+</html>

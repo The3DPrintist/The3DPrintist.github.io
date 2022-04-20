@@ -20,7 +20,7 @@
     //scene.environment = envmap;
 
     new THREE.RGBELoader()
-        .load("./model/studio.hdr", function (texture){
+        .load("./model/studio2.hdr", function (texture){
             texture.mapping = THREE.EquirectangularReflectionMapping;
             scene.environment = texture
         });
@@ -58,17 +58,6 @@
             //Mesh.scale.set(1,1,1);
             scene.add(Mesh);
             Mesh.position.set(0,0,-6);
-        });
-    }
-
-    function loadLogo() {
-        let balloonLoader = new THREE.GLTFLoader();
-
-        balloonLoader.load('./model/logo.gltf', (gltf) => {
-            Mesh = gltf.scene;
-            //Mesh.scale.set(1,1,1);
-            scene.add(Mesh);
-            Mesh.position.set(0, 2, -6);
         });
     }
 
@@ -160,13 +149,8 @@
 
     init();
     loadPD();
-    loadLogo();
 
     animate();
 </script>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
-<p>Test</p>
 </body>
 </html>
