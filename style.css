@@ -1,0 +1,45 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(https://zack3dprints.com/font/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: LatoB;
+    src: url(https://zack3dprints.com/font/Lato-Bold.ttf);
+}
+
+@font-face {
+    font-family: Simp;
+    src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
+}
+
+h1 {
+    color: #FFFFFF;
+    font-family: Lato
+}
+
+p {
+    color: #FFFFFF;
+    font-family: Lato
+}
+
+.section {
+    border: 0px outset #DC3545;
+    background-color: #1E1E1E;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 128px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.hline {
+    border-color: #DC3545;
+    margin-left: 128px;
+    margin-right: 128px;
+}
