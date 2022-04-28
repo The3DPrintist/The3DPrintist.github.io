@@ -89,24 +89,6 @@ document.addEventListener('mousemove', (e) => {
     rotY = -(e.clientY - window.innerHeight / 2) / (window.innerHeight);
 });
 
-function deviceOrientationListener(e) {
-    var g = Math.abs(e.gamma) * -1;
-    var b = e.beta;
-    var portrait = true;
-    if (portrait) {
-        if (e.gamma > 0)
-            rotX = -(g / 90 + 5) / Math.pow((g / 90 - 2), 2) + 1.25;
-        else
-            rotX = (-(g / 90 + 5) / Math.pow((g / 90 - 2), 2) + 1.25) * -1;
-        rotY = (e.beta / 180) / 2 - 0.3;
-    }
-    else {
-        rotX = e.beta / 90;
-        rotY = e.gamma / 90;
-    }
-}
-window.addEventListener("deviceorientation", deviceOrientationListener, true);
-
 function starstart() {
 
 }
