@@ -27,19 +27,36 @@
 
 <body style="background-color:#322F29;">
     <h1 style="color:green;">
-        Img Board Test
+        Image Board
     </h1>
+
+    <p>
+        <button onclick="sc(0)">Black</button>
+        <button onclick="sc(1)">White</button>
+        <button onclick="sc(2)">Red</button>
+        <button onclick="sc(3)">Green</button>
+        <button onclick="sc(4)">Blue</button>
+        <button onclick="sc(5)">Cyan</button>
+        <button onclick="sc(6)">Magenta</button>
+        <button onclick="sc(7)">Yellow</button>
+        <button onclick="sc(8)">Orange</button>
+        <button onclick="sc(9)">Grey</button>
+    </p>
+
+    <canvas onclick="draw(canvas)" id="myCanvas" width="64" height="64" style="margin:8px">
+        Your browser does not support the canvas element.
+    </canvas>
     
     <p>
-        <!-- Making a text input -->
-        <input type="text" id="imgdata" placeholder="Data">
-    
-        <!-- Button to send data -->
-        <button onclick="sendJSON()">Send JSON</button>
-    
-        <!-- For printing result from server -->
-    <p class="result" style="color:green"></p>
-    
+        <button onclick="fill()">Fill with color</button>
+        <button onclick="noise()">Fill with noise</button>
+        <button onclick="mnoise()">Fill with monochrome noise</button>
+    </p>
+    <p>
+        <input type="text" id="imgdata" placeholder="Data (1024 pls)">
+        <button onclick="showimg()">Update Image</button>
+        <button onclick="sendJSON()">Send Image</button>
+        <button onclick="sendJSONLocal()">Send Image (Local Only)</button>
     </p>
     
     <!-- Include the JavaScript file -->
