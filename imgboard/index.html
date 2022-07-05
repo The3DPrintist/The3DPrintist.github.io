@@ -11,26 +11,23 @@
     <title>Image Board</title>
     <style>
         body {
-            margin: 0;
+            margin: 8px;
         }
 
-
-        h1 {
-            color: #B1AEA8;
-        }
-
-        p {
-            color: #B1AEA8;
-        }
     </style>
 </head>
 
 <body style="background-color:#322F29;">
-    <h1 style="color:green;">
+    <h1>
         Image Board
     </h1>
 
-    <p>
+    <p style="margin:8px">
+        <a onclick="onButtonClick()" style="margin: 8px" class="btn btn-outline-light" role="button">Whats this?</a>
+        <p id="explain" style="margin: 8px; width: 512px" type="text" id="textInput" ></p>
+    </p>
+
+    <p style="margin:8px">
         <button onclick="sc(0)">Black</button>
         <button onclick="sc(1)">White</button>
         <button onclick="sc(2)">Red</button>

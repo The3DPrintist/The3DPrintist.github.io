@@ -146,3 +146,15 @@ canvas.addEventListener("mousemove", function (e) {
         draw(canvasX, canvasY);
     }
 });
+
+showingex = false;
+function onButtonClick() {
+    console.log("hi")
+    if(showingex == true){
+        showingex = false
+        document.getElementById("explain").innerHTML = ""
+    }else{
+        showingex = true
+        document.getElementById("explain").innerHTML = "This is a page that lets you draw a picture and send it to a 32x32 pixel LED matrix on my desk! Please use it, I spent alot for the parts.<br>Also, due to the fact I know nothing about servers, this basically only works on HTTP, not HTTPS"  
+    }
+}
