@@ -18,6 +18,15 @@ html {
 }
 
 h1 {
+    background-image: url("headerbg.gif");
+    background-size: pattern;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /*color: #FFFFFF;*/
+    font-family: Lato
+}
+
+h2 {
     color: #FFFFFF;
     font-family: Lato
 }
