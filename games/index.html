@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="background-color:#121212;">
+<body style="background-color:#121212;" id = "body">
 
   <div id="bg"></div>
 
@@ -17,6 +17,17 @@
   </div>
 
 <hr class="hline">
+
+<script>
+  document.getElementById("body").onscroll = function myFunction() {  
+    var scrolltotop = document.scrollingElement.scrollTop;
+    var target = document.getElementById("bg");
+    var xvalue = "left";
+    var factor = -0.1;
+    var yvalue = scrolltotop * factor;
+    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+  }
+</script>
 
 <!--games list starts here-->
 

@@ -56,7 +56,7 @@ p {
 
 @keyframes zoom {
     from {transform: scale(0,0);}
-    to {transform: rotate3d(1,1);}
+    to {transform: scale(1,1);}
 }
 
 .hline {
