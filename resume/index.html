@@ -6,9 +6,23 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="background-color:#121212;">
+<body style="background-color:#181818;">
 
+    <div id="glowbg"></div>
+    <div id="blurbg"></div>
     <div id="bg"></div>
+
+    <script>
+        const blob = document.getElementById("glowbg");
+        window.onpointermove = event => { 
+          const { clientX, clientY } = event;
+          
+          blob.animate({
+            left: `${clientX}px`,
+            top: `${clientY}px`
+          }, { duration: 250, fill: "forwards" });
+        }
+      </script>
 
     <div style="margin-left: 15%">
         <a id="top"></a>

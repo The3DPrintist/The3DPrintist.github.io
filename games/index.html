@@ -6,8 +6,10 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="background-color:#121212;" id = "body">
+<body style="background-color:#181818;" id = "body">
 
+  <div id="glowbg"></div>
+  <div id="blurbg"></div>
   <div id="bg"></div>
 
   <div style="margin-left: 15%">
@@ -26,6 +28,16 @@
     var factor = -0.1;
     var yvalue = scrolltotop * factor;
     target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+  }
+
+  const blob = document.getElementById("glowbg");
+  window.onpointermove = event => { 
+    const { clientX, clientY } = event;
+    
+    blob.animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`
+    }, { duration: 250, fill: "forwards" });
   }
 </script>
 

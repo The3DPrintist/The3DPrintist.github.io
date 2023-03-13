@@ -6,8 +6,10 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="background-color:#121212;">
+<body style="background-color:#181818;">
 
+  <div id="glowbg"></div>
+  <div id="blurbg"></div>
   <div id="bg"></div>
   
   <div style="margin-left: 15%">
@@ -17,6 +19,18 @@
   </div>
 
 <hr class="hline">
+
+<script>
+  const blob = document.getElementById("glowbg");
+  window.onpointermove = event => { 
+    const { clientX, clientY } = event;
+    
+    blob.animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`
+    }, { duration: 250, fill: "forwards" });
+  }
+</script>
 
 <!--games list starts here-->
 
