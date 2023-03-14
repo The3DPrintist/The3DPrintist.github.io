@@ -38,6 +38,10 @@ p {
     font-family: Lato
 }
 
+body{
+    background-color:#252525;
+}
+
 .section {
     background: #1E1E1E;
     /*background: rgba(150, 150, 150, 0.1);
@@ -98,10 +102,10 @@ body {
 }
 
 #blurbg{
-    background-color: rgba(18, 18, 18, 0.1);
+    background-color: rgba(25, 25, 25, 0.05);
     background-attachment: fixed;
     position: fixed;
-    backdrop-filter: blur(100px);
+    backdrop-filter: blur(80px);
     z-index: -101;
     height: 100%;
     width: 100%;
@@ -115,7 +119,7 @@ body {
     background-attachment: fixed;
     position: fixed;
     z-index: -102;
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
 }
