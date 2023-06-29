@@ -262,4 +262,26 @@
 </div>
 
 </body>
+
+<script>
+  console.log('hi');
+  const observer = new IntersectionObserver(entries => {
+    // Loop over the entries
+    entries.forEach(entry => {
+      // If the element is visible
+      if (entry.isIntersecting) {
+        // Add the animation class
+        entry.target.classList.add('section-anim');
+      }
+    });
+  });
+
+  document.querySelectorAll('.section').forEach((i) => {
+    if (i) {
+        observer.observe(i);
+    }
+});
+</script>
+
 </html>
+

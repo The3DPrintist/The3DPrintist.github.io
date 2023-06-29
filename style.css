@@ -53,10 +53,13 @@ body{
     margin-top: 16px;
     margin-bottom: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
-    animation-name: zoom2;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in;
     transform-origin: 50% 0% 0px;
+}
+
+.section-anim {
+    animation-name: zoom3;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in;
 }
 
 @keyframes zoom {
@@ -76,6 +79,32 @@ body{
     transform: perspective(1920px) rotateX(0deg);
     }
 }
+
+@keyframes zoom3 {
+    from {
+    transform: scale(1,0);
+    }
+    to {
+    transform: scale(1,1);
+    }
+}
+
+/*.btn{
+    background-color: #f8f9fa;
+    color: #1E1E1E;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: Lato;
+    margin: 4px;
+}*/
+.btn{
+    border-radius: 8px;
+}
+
+.rounded{
+    box-shadow:  5px 5px 8px #1A1A1A;
+}
+
 
 .hline {
     border-color: #1E1E1E;
