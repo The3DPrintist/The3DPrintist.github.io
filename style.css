@@ -17,6 +17,14 @@ html {
     src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
 }
 
+@font-face {
+    font-family: 'NotoColorEmoji';
+    src: url('/font/NotoColorEmoji.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 h1 {
     background-image: url("headerbg.gif");
     background-size: pattern;
@@ -44,8 +52,6 @@ body{
 
 .section {
     background: #1E1E1E;
-    /*background: rgba(150, 150, 150, 0.1);
-    backdrop-filter: blur(2px);*/
     text-align: center;
     border-radius: 16px;
     padding: 10px;
@@ -60,6 +66,22 @@ body{
     animation-name: zoom3;
     animation-duration: 0.25s;
     animation-timing-function: ease-in;
+}
+
+.flexbox {
+    display: flex;
+    margin: 15%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    gap: 16px;
+}
+
+.flexsection {
+    background: #1E1E1E;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow:  5px 5px 8px #0e0e0e;
+    transform-origin: 50% 0% 0px;
 }
 
 @keyframes zoom {
