@@ -1,6 +1,6 @@
 .input-div {
 
-    height: 128px;
+    min-height: 128px;
     display: flex;
     justify-content: center;
     align-items: center;
