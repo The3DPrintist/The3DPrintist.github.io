@@ -68,7 +68,7 @@ function displayImages() {
     let iw = 0
     let ih = 0
 
-    img.src = URL.createObjectURL(imagesArray[0])
+    img.src = URL.createObjectURL(imagesArray[0]);
 
     img.onload = function(){
         iw = img.width
@@ -97,19 +97,15 @@ function displayImages() {
 
     }
 
-    /*for (let i = 0; i < animlen; i++) {
-        createImageBitmap(imagesArray[i]).then(imageBitmap=>{
-            tablectx.drawImage(imageBitmap,i*iw,0);
-        })
-    }*/
-
     for (let i = 0; i < animlen; i++) {
-        Promise.all([
-            createImageBitmap(imagesArray[i]),
-        ]).then((sprites) => {
-            tablectx.drawImage(sprites[0],i*iw,0);
-        });
+        let sprite = document.createElement('img');
+        sprite.src = URL.createObjectURL(imagesArray[i]);
+        sprite.onload = function(){
+            console.log("draw");
+            tablectx.drawImage(sprite,i*iw,0);
+        }
     }
+
 }
 
 function deleteImage(index) {
