@@ -207,3 +207,36 @@ body {
     width: 150px;
     border-radius: 50%;
 }
+
+.margin {
+    margin: 15%;
+    margin-top: 0px;
+    margin-bottom: 16px;
+}
+
+@media (max-aspect-ratio: 1) {
+    .section{
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .flexbox {
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .margin {
+        margin: 5%;
+        margin-top: 0px;
+        margin-bottom: 16px;
+    }
+
+    table {
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+}
