@@ -65,6 +65,15 @@ input{
     background-color: #121212;
 }
 
+select{
+    border-width: 0px;
+    padding: 8px;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: #121212;
+    border-radius: 8px;
+}
+
 .section {
     background: #1E1E1E;
     text-align: center;

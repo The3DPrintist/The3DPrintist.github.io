@@ -16,15 +16,22 @@
   <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
 </div>
 
-<wbr>
-
 <div class ="flexbox">
 
     <div class="flexsection" style="flex: 2; text-align: center;">
-        <button class="btn btn-outline-light" onclick="gen();">Generate</button>
+        <button class="btn btn-outline-light" onclick="gen();" style="width: 100%; height: 100%; font-size: x-large;">Generate</button>
+    </div>
+
+    <div class="flexsection" style="flex: 1; text-align: center;">
+        <label for="len">Code length:</label>
+        <select name="len" id="len">
+          <option value="5">5</option>
+          <option value="6">6 (very slow)</option>
+        </select>
     </div>
 
     <div class="flexsection" style="flex: 1; justify-content: center; align-items: center;">
+        <p id="nextcode" style="margin: 0.1em;">h</p>
         <p id="fails" style="margin: 0.1em;">fails: 0</p>
         <p id="fp" style="margin: 0.1em;">fail %: 0</p>
     </div>
@@ -32,7 +39,7 @@
 </div>
 
 <div class="section" style="overflow: auto">
-    <h2 id="output" style="margin: 0.1em;">none</h2>
+    <h2 id="output" style="margin: 0.1em;"></h2>
     <img id="imgout" style="width: 515px;">
 </div>
 
@@ -50,9 +57,13 @@
     var totalfails = 0;
     var totalwins = 0;
     var image;
-    function randomString() {
+    var nextLink;
+    var nextCode;
+    var canSwap = false;
+    var stringlength = 5; /* could be 6 or 7, but takes forever because there are lots of dead images */
+    function genNext() {
+        canSwap = false;
         var chars = '01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'; 
-        var stringlength = 5; /* could be 6 or 7, but takes forever because there are lots of dead images */
         var text = '';
         for (var i = 0; i < stringlength; i++) {
             var rnum = Math.floor(Math.random() * chars.length);
@@ -64,34 +75,58 @@
         image = new Image();
         $(image).attr('id', "imgout");
         $(image).css("max-width","100%");
+        $(image).css("max-height","80vh");
+        image.src = source;
         image.onload = function() {
-            if (this.width == 161) {
-                console.log("fail");
+            let w = this.width
+            let h = this.height
+            if (w == 161 || (w/h) > 8) {
                 fails += 1;
                 totalfails += 1;
-
                 image = null;
-                randomString();
+                if(fails < 50){
+                    genNext();
+                }
             } else {
-                $('#imgout').replaceWith(this);
-
-                //update labels
+                canSwap = true;
                 totalwins += 1;
                 console.log(source);
                 $('#fp').text("fail %: " + Math.floor((totalfails/(totalwins+totalfails))*100));
-                $('#history').prepend("<p><a href=\"" + source + "\">" + source + "</a></p>");
+                nextLink = "<p><a href=\"" + source + "\" target=\"_blank\">" + source + "</a></p>";
             }
         };
-        image.src = source;
+        image.onerror = function(e){
+            fails += 1;
+            totalfails += 1;
+            image = null;
+            if(fails < 50){
+                genNext();
+            }
+        };
 
-        $('#output').text(text);
+        nextCode = text;
+        $('#nextcode').text(text);
         $('#fails').text("fails: " + fails);
 
     }
 
+    document.getElementById("len").addEventListener("change", function(){
+        stringlength = this.value;
+    });
+
     function gen(){
+        swap();
         fails = 0;
-        randomString();
+        genNext();
+    }
+
+    function swap(){
+        if(canSwap && image){
+            $('#output').text(nextCode);
+            $('#history').prepend(nextLink);
+            $('#imgout').replaceWith(image);
+        }
+        image = null;
     }
 
     $(document).ready(function() { 
