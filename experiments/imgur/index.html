@@ -12,21 +12,23 @@
   
 <div class="margin">
   <h1>Random Imgur</h1>
-  <p>Generates a random image from Imgur. May be NSFW!</p>
-  <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
 </div>
 
 <div class ="flexbox">
 
     <div class="flexsection" style="flex: 2; text-align: center;">
-        <button class="btn btn-outline-light" onclick="gen();" style="width: 100%; height: 100%; font-size: x-large;">Generate</button>
+        <button class="btn btn-outline-light" onclick="gen();" id="gen" style="width: 100%; height: 100%; font-size: x-large;">Generate</button>
     </div>
 
     <div class="flexsection" style="flex: 1; text-align: center;">
-        <label for="len">Code length:</label>
-        <select name="len" id="len">
-          <option value="5">5</option>
-          <option value="6">6 (very slow)</option>
+
+        <label for="post">Postfix:</label>
+        <select name="post" id="post">
+            <option value="">none (full size)</option>
+            <option value="t">t (tiny)</option>
+            <option value="s">s (small, square)</option>
+            <option value="m">m (medium)</option>
+            <option value="l">l (large)</option>
         </select>
     </div>
 
@@ -59,7 +61,8 @@
     var image;
     var nextLink;
     var nextCode;
-    var canSwap = false;
+    var canSwap = true;
+    var postFix = "";
     var stringlength = 5; /* could be 6 or 7, but takes forever because there are lots of dead images */
     function genNext() {
         canSwap = false;
@@ -69,14 +72,14 @@
             var rnum = Math.floor(Math.random() * chars.length);
             text += chars.substring(rnum,rnum+1);
         }
-        
-        var source = 'https://i.imgur.com/' + text + '.png';
+        text += postFix;
+        var source = 'https://i.imgur.com/' + text + '.jpg';
         
         image = new Image();
+        image.src = source;
         $(image).attr('id', "imgout");
         $(image).css("max-width","100%");
         $(image).css("max-height","80vh");
-        image.src = source;
         image.onload = function() {
             let w = this.width
             let h = this.height
@@ -86,6 +89,8 @@
                 image = null;
                 if(fails < 50){
                     genNext();
+                }else{
+                    canSwap = true;
                 }
             } else {
                 canSwap = true;
@@ -93,6 +98,8 @@
                 console.log(source);
                 $('#fp').text("fail %: " + Math.floor((totalfails/(totalwins+totalfails))*100));
                 nextLink = "<p><a href=\"" + source + "\" target=\"_blank\">" + source + "</a></p>";
+                $('#nextcode').css("color","green");
+                //$('#gen').css("background-color","green");
             }
         };
         image.onerror = function(e){
@@ -101,23 +108,29 @@
             image = null;
             if(fails < 50){
                 genNext();
+            }else{
+                canSwap = true;
             }
         };
 
         nextCode = text;
         $('#nextcode').text(text);
+        $('#nextcode').css("color","red");
+        //$('#gen').css("background-color","red");
         $('#fails').text("fails: " + fails);
 
     }
 
-    document.getElementById("len").addEventListener("change", function(){
-        stringlength = this.value;
+    document.getElementById("post").addEventListener("change", function(){
+        postFix = this.value;
     });
 
     function gen(){
-        swap();
-        fails = 0;
-        genNext();
+        if(canSwap){
+            swap();
+            fails = 0;
+            genNext();
+        }
     }
 
     function swap(){
@@ -131,6 +144,7 @@
 
     $(document).ready(function() { 
         gen();
+        console.log("hi");
     });
 </script>
 
