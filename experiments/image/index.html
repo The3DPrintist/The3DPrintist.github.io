@@ -11,7 +11,7 @@
 <body>
   
 <div class="margin">
-  <h1>Random Imgur</h1>
+  <h1>Random Image</h1>
 </div>
 
 <div class ="flexbox">
@@ -22,6 +22,12 @@
 
     <div class="flexsection" style="flex: 1; text-align: center;">
 
+        <label for="pre">Host:</label>
+        <select name="pre" id="pre">
+            <option value="161,http://i.imgur.com/">Imgur</option>
+            <option value="160,http://iili.io/">Free Image Host</option>
+        </select>
+
         <label for="post">Postfix:</label>
         <select name="post" id="post">
             <option value="">none (full size)</option>
@@ -30,6 +36,9 @@
             <option value="m">m (medium)</option>
             <option value="l">l (large)</option>
         </select>
+
+        <label for="len">length:</label>
+        <input type="number" name="len" id="len" min = 1 max = 10 value = 5></input>
     </div>
 
     <div class="flexsection" style="flex: 1; justify-content: center; align-items: center;">
@@ -62,18 +71,21 @@
     var nextLink;
     var nextCode;
     var canSwap = true;
-    var postFix = "";
-    var stringlength = 5; /* could be 6 or 7, but takes forever because there are lots of dead images */
+    var failwidth = 161
+    var prefix = "https://i.imgur.com/";
+    var postfix = "";
+    var stringlength = 5;
     function genNext() {
         canSwap = false;
         var chars = '01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghiklmnopqrstuvwxyz'; 
         var text = '';
         for (var i = 0; i < stringlength; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
+            //var rnum = Math.floor(Math.random() * chars.length);
+            var rnum = crypto.getRandomValues(new Uint32Array(1))[0] % chars.length;
             text += chars.substring(rnum,rnum+1);
         }
-        text += postFix;
-        var source = 'https://i.imgur.com/' + text + '.jpg';
+        text += postfix;
+        var source = prefix + text + '.jpg';
         
         image = new Image();
         image.src = source;
@@ -83,7 +95,7 @@
         image.onload = function() {
             let w = this.width
             let h = this.height
-            if (w == 161 || (w/h) > 8) {
+            if (w == failwidth || (w/h) > 8) {
                 fails += 1;
                 totalfails += 1;
                 image = null;
@@ -122,7 +134,18 @@
     }
 
     document.getElementById("post").addEventListener("change", function(){
-        postFix = this.value;
+        postfix = this.value;
+    });
+
+    document.getElementById("pre").addEventListener("change", function(){
+        let vals = this.value.split(",");
+
+        failwidth = vals[0];
+        prefix = vals[1];
+    });
+
+    document.getElementById("len").addEventListener("change", function(){
+        stringlength = this.value;
     });
 
     function gen(){
