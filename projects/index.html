@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body id = "body">
+
+  <div id="glowbg"></div>
+  <div id="blurbg"></div>
+  <div id="bg"></div>
+
+  <div class="margin">
+    <h1>Zachary Snyder's projects</h1>
+    <p>Projects that I have made that aren't games.</p>
+    <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
+  </div>
+
+
+
+<script>
+  document.getElementById("body").onscroll = function myFunction() {  
+    var scrolltotop = document.scrollingElement.scrollTop;
+    var target = document.getElementById("bg");
+    var xvalue = "left";
+    var factor = -0.05;
+    var yvalue = scrolltotop * factor;
+    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
+  }
+
+  const blob = document.getElementById("glowbg");
+  const blobblur = document.getElementById("blurbg");
+  window.onpointermove = event => { 
+    const { clientX, clientY } = event;
+    
+    blob.animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`
+    }, { duration: 250, fill: "forwards" });
+    blobblur.animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`
+    }, { duration: 250, fill: "forwards" });
+  }
+</script>
+
+<div class="section">
+  <h1>BoiBean Discord Bot</h1>
+  <p>BoiBean is a multi-purpose Discord bot that I made for the server that my friends are in.</p>
+  <p>It has many features such as youtube connectivity, chat GPT, stable diffusion, and daily random words.</p>
+
+  <div class="row" style="margin: 25px">
+    <div class="col" style="margin: 25px">
+      <img src="music.png" class="rounded" style="margin: 0px;">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="gpt.png" class="rounded" style="margin: 0px;">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="stable.png" class="rounded" style="margin: 0px;">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="randomword.png" class="rounded" style="margin: 0px;">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h1>BoiBean Box</h1>
+  <p>BoiBean Box is a Raspberry Pi project thats uses ChatGPT to make a smart and fast AI assistant.</p>
+  <p>OpenAI APIs are used to convert recorded voice to text, interface with ChatGPT, and convert the response to realistic speech.</p>
+  <p>The box has many features including but not limited to: Model switching, Voice switching, Volume Setting, and Status LEDs.</p>
+  <p>The housing was made using a Realistic Radio intercom from the 1980s.</p>
+
+  <div class="row" style="margin: 25px">
+    <div class="col" style="margin: 25px">
+      <img src="box.jpg" class="rounded" style="margin: 0px; max-width: 100%;">
+    </div>
+    <div class="col" style="margin: 25px">
+      <img src="boxguts.jpg" class="rounded" style="margin: 0px; max-width: 100%;">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h1>AR Stream</h1>
+  <p>AR Stream project created the Colorado School of Mines field session summer 2024.</p>
+  <p>The program, for Microsoft HoloLens 2, uses Web RTC to send a camera stream to a Docker container, which uses YOLO V5 to send bounding boxes back to the headset.</p>
+
+  <div class="row" style="margin: 25px">
+    <div class="col" style="margin: 25px">
+      <img src="arstream.gif" class="rounded" style="margin: 0px;">
+    </div>
+    <div class="col" style="margin: 25px">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/27GklXY-wpE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h1>Mandelbrot Renderer</h1>
+  <p>My implementation of rendering a mandelbrot set, as fractals are interesting to me.</p>
+
+  <div class="row" style="margin: 25px">
+    <div class="col" style="margin: 25px">
+      <img src="brot.png" class="rounded" style="margin: 0px;">
+    </div>
+    
+    <div class="col" style="margin: 25px">
+      <img src="zoom.gif" class="rounded" style="margin: 0px;">
+    </div>
+  </div>
+</div>
+
+
+
+<div class="section">
+  <h1>Earth Balls</h1>
+  <p>An experiment made with Unity using Google Earth tiles.</p>
+  <p>This lets you fly around the earth and shoot balls and cubes with realistic collision.</p>
+
+  <div class="row" style="margin: 25px">
+    <div class="col" style="margin: 25px">
+      <img src="balls.gif" class="rounded" style="margin: 0px;">
+    </div>
+  </div>
+</div>
+
+
+
+<!--scroll to top-->
+<div style="margin-left: 15%; margin-bottom: 20px">
+  <a href="#top">
+    <button type="submit" class="btn btn-outline-light">▲</button>
+  </a>
+</div>
+
+</body>
+
+</html>
+
