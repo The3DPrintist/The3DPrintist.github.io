@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send String to Python</title>
+</head>
+<body>
+    <h1>Send a String</h1>
+    <form id="stringForm">
+        <label for="inputString">Enter a string:</label>
+        <input type="text" id="inputString" name="inputString">
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+
+        function sendData(data) {
+            fetch('https://script.google.com/macros/s/AKfycbxUKESWQe1Ncq00v44lYotTq6x0e-PLdLkQgDnpRrroyvuKZdUj6DSqMMY_3FB8eM46/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'data': data
+                })
+            });
+        }
+
+        document.getElementById('stringForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const inputString = document.getElementById('inputString').value;
+
+            console.log(inputString);
+            sendData(inputString);
+        });
+
+    </script>
+</body>
+</html>
