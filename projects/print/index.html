@@ -16,16 +16,15 @@
 
 <div class="section" style="text-align: left;">
     <p>
-        I have a receipt printer by my computer, this website lets you send a short message to it! If you know me, feel free to ask for a photo.
+        I have a receipt printer by my computer, this website lets you send a short message to it!
+        If you know me, feel free to ask for a photo.
     </p>
     <p>
-        Spam and Offensive messages are filtered out automatically.
+        Spam and Offensive messages are filtered automatically.
+        Max 1 message per minute.
     </p>
     <p>
-        To send an image, send just the URL, the URL must end in '.png'
-    </p>
-    <p>
-        I promise this isn't compliment farming I just think it's fun.
+        To send an image, send the URL! (Imgur images don't work, sorry.)
     </p>
 </div>
 
@@ -33,7 +32,6 @@
 
     <div class="flexsection" style="flex: 2; text-align: center;">
         <textarea id="message" name="message" onkeyup="updateCounter()" rows="4" cols="50" style="width: 100%; min-height: 100px;" maxlength="250" placeholder="Hello World!"></textarea>
-
     </div>
 
     <div class="flexsection" style="flex: 1; text-align: center;">
@@ -43,10 +41,9 @@
 
 </div>
 
-<div class="section" style="text-align: left;">
-    <p id="status">
-        🖨️:
-    </p>
+<div class="section" style="text-align: center;">
+    <p>Output</p>
+    <textarea id="status" rows="4" style="width: 100%; min-height: 100px;" maxlength="250" placeholder="Send something!" disabled></textarea>
 </div>
 
 <!-- <div class="section" style="text-align: left;">
@@ -88,7 +85,7 @@
             texbox.value = "";
 
             const statusbox = document.getElementById("status");
-            statusbox.innerHTML = "🖨️: " + msg;
+            statusbox.innerHTML = msg;
 
             updateCounter();
         }
