@@ -60,6 +60,17 @@ textarea{
     background-color: #121212;
 }
 
+.textareapaper{
+    border-radius: 8px;
+    border-width: 0px;
+    padding: 8px;
+    box-shadow: none;
+    color: #362f2f;
+    background-image: url("/projects/print/paperbg.png");
+    font-size: x-large;
+    font-weight: 500;
+}
+
 .spaninput{
     border-radius: 8px;
     border-width: 0px;
@@ -99,8 +110,8 @@ select{
 .flexbox {
     display: flex;
     margin: 15%;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     gap: 16px;
 }
 
@@ -185,7 +196,13 @@ select{
 
 .margin {
     margin: 15%;
-    margin-top: 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.margincenter {
+    margin: 25%;
+    margin-top: 16px;
     margin-bottom: 16px;
 }
 
@@ -204,7 +221,13 @@ select{
 
     .margin {
         margin: 5%;
-        margin-top: 0px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .margincenter {
+        margin: 0%;
+        margin-top: 16px;
         margin-bottom: 16px;
     }
 

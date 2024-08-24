@@ -18,32 +18,45 @@
     <p>
         I have a receipt printer by my computer, this website lets you send a short message to it!
         If you know me, feel free to ask for a photo.
+        I promise this isn't compliment farming, I just think its funny.
     </p>
     <p>
-        Spam and Offensive messages are filtered automatically.
-        Max 1 message per minute.
+        To send an image, send the URL! (must end in <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.webp</code>) (Imgur images don't work, sorry.)
     </p>
     <p>
-        To send an image, send the URL! (Imgur images don't work, sorry.)
+        Spam is filtered automatically, only 1 message per minute.
     </p>
-</div>
-
-<div class ="flexbox">
-
-    <div class="flexsection" style="flex: 2; text-align: center;">
-        <textarea id="message" name="message" onkeyup="updateCounter()" rows="4" cols="50" style="width: 100%; min-height: 100px;" maxlength="250" placeholder="Hello World!"></textarea>
-    </div>
-
-    <div class="flexsection" style="flex: 1; text-align: center;">
-        <p id="counter">0 / 250</p>
-        <button class="btn btn-outline-light" onclick="sendClicked();" id="gen" style="width: 50%; height: 50%; ">Send</button>
-    </div>
 
 </div>
 
-<div class="section" style="text-align: center;">
-    <p>Output</p>
-    <textarea id="status" rows="4" style="width: 100%; min-height: 100px;" maxlength="250" placeholder="Send something!" disabled></textarea>
+<div class="margincenter">
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 2; text-align: center;">
+            <textarea class="textareapaper" id="message" name="message" onkeyup="updateCounter()" rows="16" cols="50" style="width: 100%; min-height: 100px;" maxlength="500" placeholder="Hello World!"></textarea>
+        </div>
+    
+    </div>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 2; text-align: center;">
+            <p id="counter">0 / 500</p>
+            <button class="btn btn-outline-light" onclick="sendClicked();" id="gen" style="width: 50%; height: 50%; ">Send</button>
+        </div>
+
+    </div>
+
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 2; text-align: center;">
+            <p>Output</p>
+            <textarea class="textareapaper" id="status" rows="100" style="width: 100%; min-height: 100px;" maxlength="500" placeholder="Send something!" disabled></textarea>
+        </div>
+
+    </div>
 </div>
 
 <!-- <div class="section" style="text-align: left;">
@@ -54,11 +67,11 @@
 
     function sendData(data) {
 
-        if(data.length > 300){
+        if(data.length > 500){
             return;
         }
 
-        if(data.length <= 1){
+        if(data.length < 1){
             return;
         }
 
@@ -78,14 +91,19 @@
 
     function sendClicked(){
         const texbox = document.getElementById("message");
-        var msg = texbox.value;
+        var msg = texbox.value.trim();
 
         if(msg.length > 0){
             sendData(msg)
             texbox.value = "";
 
             const statusbox = document.getElementById("status");
-            statusbox.innerHTML = msg;
+            if(statusbox.value == ""){
+                statusbox.value = msg;
+            }else{
+                statusbox.value = statusbox.value + "\n\n" + msg;
+            }
+
 
             updateCounter();
         }
@@ -95,7 +113,7 @@
         const texbox = document.getElementById("message");
         const counter = document.getElementById("counter");
         var msg = texbox.value;
-        counter.innerHTML = msg.length + " / 250" 
+        counter.innerHTML = msg.length + " / 500" 
 
     }
 
