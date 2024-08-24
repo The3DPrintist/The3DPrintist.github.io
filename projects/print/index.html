@@ -41,8 +41,9 @@
 
     <div class ="flexbox">
 
-        <div class="flexsection" style="flex: 2; text-align: center;">
-            <p id="counter">0 / 500</p>
+        <div class="flexsection" style="flex: 2; text-align: center; height: 100%;">
+            <p id="counter">0 / 500 characters</p>
+            <p id="status">(no image detected)</p>
             <button class="btn btn-outline-light" onclick="sendClicked();" id="gen" style="width: 50%; height: 50%; ">Send</button>
         </div>
 
@@ -53,7 +54,7 @@
 
         <div class="flexsection" style="flex: 2; text-align: center;">
             <p>Output</p>
-            <textarea class="textareapaper" id="status" rows="100" style="width: 100%; min-height: 100px;" maxlength="500" placeholder="Send something!" disabled></textarea>
+            <textarea class="textareapaper" id="log" rows="100" style="width: 100%; min-height: 100px;" maxlength="500" placeholder="Send something!" disabled></textarea>
         </div>
 
     </div>
@@ -64,6 +65,8 @@
 </div> -->
 
 <script>
+
+    var timeLeft = 0;
 
     function sendData(data) {
 
@@ -93,28 +96,55 @@
         const texbox = document.getElementById("message");
         var msg = texbox.value.trim();
 
-        if(msg.length > 0){
+        if(msg.length > 0 && timeLeft<1){
             sendData(msg)
             texbox.value = "";
 
-            const statusbox = document.getElementById("status");
-            if(statusbox.value == ""){
-                statusbox.value = msg;
+            const logbox = document.getElementById("log");
+            if(logbox.value == ""){
+                logbox.value = msg;
             }else{
-                statusbox.value = statusbox.value + "\n\n" + msg;
+                logbox.value = logbox.value + "\n\n" + msg;
             }
 
+            if(msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp')){
+                logbox.value = logbox.value + "\n" + "🖼️";
+            }
 
             updateCounter();
+
+            startCountdown();
         }
     }
 
     function updateCounter(){
         const texbox = document.getElementById("message");
         const counter = document.getElementById("counter");
+        const status = document.getElementById("status");
         var msg = texbox.value;
-        counter.innerHTML = msg.length + " / 500" 
+        counter.innerHTML = msg.length + " / 500 characters" 
 
+        if(msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp')){
+            status.innerHTML = "(image detected!)";
+        }else{
+            status.innerHTML = "(no image detected)";
+        }
+
+    }
+
+    function startCountdown() {
+        timeLeft = 60; // seconds
+        const countdownElement = document.getElementById('gen');
+
+        const countdownInterval = setInterval(function() {
+            countdownElement.innerHTML = timeLeft;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "Send";
+            }
+        }, 1000); // Update every second
     }
 
 </script>
