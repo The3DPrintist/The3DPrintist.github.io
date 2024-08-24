@@ -66,8 +66,8 @@ textarea{
     padding: 8px;
     box-shadow: none;
     color: #362f2f;
-    background-color: #ffffff;
-    background-image: url("/projects/print/paperbg.png");
+    background-color: #ececec;
+    background-image: url("/projects/print/paperbgtrans2.png");
     font-size: x-large;
     font-weight: 500;
 }
