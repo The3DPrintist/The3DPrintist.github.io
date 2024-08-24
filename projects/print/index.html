@@ -21,7 +21,7 @@
         I promise this isn't compliment farming, I just think its funny.
     </p>
     <p>
-        To send an image, send the URL! (must end in <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.webp</code>) (Imgur images don't work, sorry.)
+        To send an image, send JUST the URL! (must end in <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.webp</code>) (Imgur images don't work, sorry.)
     </p>
     <p>
         Spam is filtered automatically, only 1 message per minute.
@@ -107,7 +107,7 @@
                 logbox.value = logbox.value + "\n\n" + msg;
             }
 
-            if(msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp')){
+            if(msg.startsWith('https://') && (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp'))){
                 logbox.value = logbox.value + "\n" + "🖼️";
             }
 
@@ -124,7 +124,7 @@
         var msg = texbox.value;
         counter.innerHTML = msg.length + " / 500 characters" 
 
-        if(msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp')){
+        if(msg.startsWith('https://') && (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp'))){
             status.innerHTML = "(image detected!)";
         }else{
             status.innerHTML = "(no image detected)";
