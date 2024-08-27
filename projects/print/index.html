@@ -21,7 +21,9 @@
         I promise this isn't compliment farming, I just think its funny.
     </p>
     <p>
-        To send an image, send JUST the URL! (must end in <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code>, or <code>.webp</code>) (Imgur images don't work, sorry.)
+        To send an image, use the file upload, or send just the url.
+        (Imgur images don't work, sorry.)
+        Please ensure the status says "image detected!"
     </p>
     <p>
         Spam is filtered automatically, only 1 message per minute.
@@ -42,6 +44,8 @@
     <div class ="flexbox">
 
         <div class="flexsection" style="flex: 2; text-align: center; height: 100%;">
+            <input type="file" id="imageUploader" accept="image/*">
+            <p></p>
             <p id="counter">0 / 500 characters</p>
             <p id="status">(no image detected)</p>
             <button class="btn btn-outline-light" onclick="sendClicked();" id="gen" style="width: 50%; height: 50%; ">Send</button>
@@ -54,7 +58,7 @@
 
         <div class="flexsection" style="flex: 2; text-align: center;">
             <p>Output</p>
-            <textarea class="textareapaper" id="log" rows="100" style="width: 100%; min-height: 100px;" maxlength="500" placeholder="Send something!" disabled></textarea>
+            <textarea class="textareapaper" id="log" rows="100" style="width: 100%; min-height: 100px;" placeholder="Send something!" disabled></textarea>
         </div>
 
     </div>
@@ -64,15 +68,13 @@
     <h2>How does it work?</h2>
 </div> -->
 
+
 <script>
 
     var timeLeft = 0;
+    const texbox = document.getElementById("message");
 
     function sendData(data) {
-
-        if(data.length > 500){
-            return;
-        }
 
         if(data.length < 1){
             return;
@@ -90,10 +92,10 @@
         });
 
         console.log("data sent");
+        texbox.maxLength = 500;
     }
 
     function sendClicked(){
-        const texbox = document.getElementById("message");
         var msg = texbox.value.trim();
 
         if(msg.length > 0 && timeLeft<1){
@@ -107,8 +109,12 @@
                 logbox.value = logbox.value + "\n\n" + msg;
             }
 
-            if(msg.startsWith('https://') && (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp'))){
+            if(isImg(msg)){
                 logbox.value = logbox.value + "\n" + "🖼️";
+            }
+
+            if(isImgBlob(msg)){
+                logbox.value = "(base64img)" + "\n" + "🖼️";
             }
 
             updateCounter();
@@ -118,14 +124,14 @@
     }
 
     function updateCounter(){
-        const texbox = document.getElementById("message");
         const counter = document.getElementById("counter");
         const status = document.getElementById("status");
         var msg = texbox.value;
         counter.innerHTML = msg.length + " / 500 characters" 
 
-        if(msg.startsWith('https://') && (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp'))){
+        if(isImg(msg) || isImgBlob(msg)){
             status.innerHTML = "(image detected!)";
+            counter.innerHTML = "";
         }else{
             status.innerHTML = "(no image detected)";
         }
@@ -146,6 +152,69 @@
             }
         }, 1000); // Update every second
     }
+
+    function isImg(msg){
+        if(msg.startsWith('https://') && (msg.endsWith('.png') || msg.endsWith('.jpg') || msg.endsWith('.jpeg') || msg.endsWith('.webp'))){
+            return true
+        }
+
+        return false
+    }
+
+    function isImgBlob(msg){
+        if(msg.startsWith('base64img:')){
+            return true
+        }
+
+        return false
+    }
+
+    document.getElementById('imageUploader').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                // Calculate the new dimensions while maintaining the aspect ratio
+                const maxDimension = 400;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > maxDimension) {
+                        height *= maxDimension / width;
+                        width = maxDimension;
+                    }
+                } else {
+                    if (height > maxDimension) {
+                        width *= maxDimension / height;
+                        height = maxDimension;
+                    }
+                }
+
+                // Create a canvas and draw the resized image onto it
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Convert the canvas to a Base64 string
+                const base64String = "base64img:" + canvas.toDataURL('image/jpeg').split(',')[1];
+
+                // Display or send the base64 string as needed
+                console.log("Resized base64 image");
+                texbox.innerHTML = base64String;
+                texbox.removeAttribute("maxlength");
+                updateCounter();
+            };
+
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);  // This will read the image as a Data URL (Base64)
+    }
+});
 
 </script>
 
