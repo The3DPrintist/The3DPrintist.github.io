@@ -6,43 +6,21 @@
   <link rel="stylesheet" href="../style.css">
 </head>
 
-<body id = "body">
+<body>
 
-  <div id="glowbg"></div>
-  <div id="blurbg"></div>
-  <div id="bg"></div>
+  <script>
+    document.onscroll = function myFunction() {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let factor = 1; // Adjust this value to control the scroll effect
+      document.documentElement.style.backgroundPosition = `0px ${scrollTop * factor}px`;
+    }
+  </script>
 
   <div class="margin">
     <h1>Zachary Snyder's games</h1>
     <p>Here are my games, some are even playable.</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
-
-<script>
-  document.getElementById("body").onscroll = function myFunction() {  
-    var scrolltotop = document.scrollingElement.scrollTop;
-    var target = document.getElementById("bg");
-    var xvalue = "left";
-    var factor = -0.05;
-    var yvalue = scrolltotop * factor;
-    target.style.backgroundPosition = xvalue + " " + yvalue + "px";
-  }
-
-  const blob = document.getElementById("glowbg");
-  const blobblur = document.getElementById("blurbg");
-  window.onpointermove = event => { 
-    const { clientX, clientY } = event;
-    
-    blob.animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`
-    }, { duration: 250, fill: "forwards" });
-    blobblur.animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`
-    }, { duration: 250, fill: "forwards" });
-  }
-</script>
 
 <!--games list starts here-->
 
