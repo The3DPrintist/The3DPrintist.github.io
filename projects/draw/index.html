@@ -16,11 +16,11 @@
 
 <div class="section" style="text-align: left;">
     <p>
-        I have a 32x32 pixel led matrix in my home, this website lets you draw on it!
+        Use this page to send images to a 32x32px LED matrix in my home.
         If you know me, feel free to ask for a photo.
     </p>
     <p>
-        The matrix updated every few minutes.
+        The matrix is updated every 2 minutes.
     </p>
     <p>
         Left click - draw
@@ -45,7 +45,7 @@
     <div class ="flexbox">
 
         <div class="flexsection" style="flex: 1; text-align: center; height: 100%;">
-            <button class="btn btn-outline-light" onclick="sendClicked();" id="gen" style="width: 50%; height: 50%;">Send</button>
+            <button class="btn btn-outline-light" onclick="sendClicked();" id="send" style="width: 50%; height: 50%;">Send</button>
         </div>
 
     </div>
@@ -67,6 +67,14 @@
         </div>
     </div>
 
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: center; height: 100%;">
+            <button class="btn btn-outline-light" onclick="recall();" id="send" style="width: 50%; height: 50%;">Recall current image (will override work!)</button>
+        </div>
+
+    </div>
+
 
 
 </div>
@@ -82,6 +90,7 @@
     const ctx = canvas.getContext('2d');
     const colorpicker = document.getElementById("color");
     const texbox = document.getElementById("message");
+    const send = document.getElementById("send");
     ctx.fillStyle = '#000000';
     ctx.fillRect( 0, 0, 32, 32 );
 
@@ -247,11 +256,32 @@
         texbox.maxLength = 500;
     }
 
+
+    function recall() {
+        const url = "https://script.google.com/macros/s/AKfycbzdSnXKmtI9Opm3Tf1aet5bPyAPN_cJ903uf2SLQATUQQlN30fKPlWfyWH2x3Ns67P2eg/exec?read=true";
+
+        fetch(url)
+        .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.text();
+        })
+        .then(data => {
+        console.log("Response from Google Apps Script:", data);
+        texbox.value = data;
+        delayedCallback(updateFromText, 200);
+        })
+        .catch(error => {
+        console.error("Error fetching data:", error);
+        });
+    }
+
+
     function sendClicked(){
         var msg = texbox.value.trim();
         if(msg.length > 0){
             sendData(msg)
         }
+        sendButtonLabel();
     }
 
     document.getElementById('imageUploader').addEventListener('change', function(event) {
@@ -295,6 +325,14 @@
 
         // Put the corrected image data back to the canvas
         context.putImageData(imageData, 0, 0);
+    }
+
+    function sendButtonLabel(){
+        send.innerHTML = "Sent to matrix!"
+        delayedCallback(sendButtonReset, 5000);
+    }
+    function sendButtonReset(){
+        send.innerHTML = "Send"
     }
 
     function delayedCallback(callback, delay) {
