@@ -25,6 +25,7 @@ body{
 	font-weight: 250;
 	font-size: 1em;
 	line-height: 1.5em;
+    color: #F9F7ED;
 }
 
 h1 {
@@ -37,16 +38,7 @@ h1 {
     font-weight: bold;
 }
 
-h2 {
-    color: #FFFFFF;
-}
-
-p {
-    color: #FFFFFF;
-}
-
 label{
-    color: #FFFFFF;
     margin: 16px;
 }
 
@@ -55,7 +47,6 @@ input{
     border-width: 0px;
     padding: 8px;
     box-shadow: none;
-    color: #ffffff;
     background-color: #121212;
 }
 
@@ -64,7 +55,6 @@ textarea{
     border-width: 0px;
     padding: 8px;
     box-shadow: none;
-    color: #ffffff;
     background-color: #121212;
 }
 
@@ -85,7 +75,6 @@ textarea{
     border-width: 0px;
     padding: 8px;
     box-shadow: none;
-    color: #ffffff;
     background-color: #121212;
 }
 
@@ -94,7 +83,6 @@ select{
     border-width: 0px;
     padding: 8px;
     box-shadow: none;
-    color: #ffffff;
     background-color: #121212;
     border-radius: 8px;
 }
