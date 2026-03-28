@@ -74,26 +74,22 @@
     var timeLeft = 0;
     const texbox = document.getElementById("message");
 
-    function sendData(data) {
+    async function sendData(data) {
 
         if(data.length < 1){
             return;
         }
 
-        fetch('https://script.google.com/macros/s/AKfycbxUKESWQe1Ncq00v44lYotTq6x0e-PLdLkQgDnpRrroyvuKZdUj6DSqMMY_3FB8eM46/exec', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                'data': data
-            })
+        await fetch("https://print.zack3dprints.workers.dev/send", {
+            method: "POST",
+            body: data
         });
 
         console.log("data sent");
         texbox.maxLength = 500;
     }
+
+
 
     function sendClicked(){
         var msg = texbox.value.trim();
