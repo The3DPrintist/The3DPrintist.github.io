@@ -86,7 +86,7 @@
         });
 
         console.log("data sent");
-        texbox.maxLength = 500;
+        texbox.maxLength = 2000;
     }
 
 
@@ -123,7 +123,8 @@
         const counter = document.getElementById("counter");
         const status = document.getElementById("status");
         var msg = texbox.value;
-        counter.innerHTML = msg.length + " / 500 characters" 
+        counter.innerHTML = msg.length + " / 2000 characters"
+        counter.innerHTML=""
 
         if(isImg(msg) || isImgBlob(msg)){
             status.innerHTML = "(image detected!)";
@@ -135,7 +136,7 @@
     }
 
     function startCountdown() {
-        timeLeft = 60; // seconds
+        timeLeft = 15; // seconds
         const countdownElement = document.getElementById('gen');
 
         const countdownInterval = setInterval(function() {
@@ -173,7 +174,7 @@
             const img = new Image();
             img.onload = function() {
                 // Calculate the new dimensions while maintaining the aspect ratio
-                const maxDimension = 255;
+                const maxDimension = 1020;
                 let width = img.width;
                 let height = img.height;
 
