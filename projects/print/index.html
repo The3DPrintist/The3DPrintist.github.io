@@ -80,12 +80,23 @@
             return;
         }
 
-        await fetch("https://print.zack3dprints.workers.dev/send", {
+        let response = await fetch("https://print.zack3dprints.workers.dev/send", {
             method: "POST",
             body: data
         });
 
-        console.log("data sent");
+        try {
+            let response = await fetch("https://print.zack3dprints.workers.dev/send", {method: "POST", body: data});
+            if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+            }
+
+            console.log(await response.text());
+        } catch (error) {
+            console.error(error.message);
+        }
+
+        console.log(response.body);
         texbox.maxLength = 2000;
     }
 
