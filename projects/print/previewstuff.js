@@ -186,10 +186,13 @@ function setPreviewSize(rows){
     let cWidth = (charWidth*2)+pixelWidth;
     let cHeight = (rows+4)*charHeight;
 
-    previewCanvas.width = cWidth;
+    //previewCanvas.width = cWidth;
     previewCanvas.height = cHeight;
-    previewCanvas.style.width = cWidth+"px";
-    previewCanvas.style.height = cHeight+"px";
+    //previewCanvas.style.width = cWidth+"px";
+    //previewCanvas.style.height = cHeight+"px";
+    previewCanvas.style.height = "auto";
+
+    previewCanvas.style.width="100%"
 }
 
 function fillReceipt(canvas){
