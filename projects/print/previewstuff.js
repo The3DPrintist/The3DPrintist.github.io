@@ -9,7 +9,7 @@ async function loadFont(){
     await fetch("./"+charKeyPath)
     .then(response => response.text())
     .then((data) => {
-        charKey = data.replaceAll("\n","");
+        charKey = data.replaceAll("\n","").replaceAll("\r","");
     });
 
     console.log(charKey);
@@ -30,7 +30,7 @@ async function loadFont(){
         font[c]=charImage;
 
         px += charWidth;
-        if(px>ccw){
+        if(px>=ccw){
             py += charHeight;
             px = 0;
         }
