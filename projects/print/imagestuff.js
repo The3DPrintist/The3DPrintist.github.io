@@ -76,6 +76,28 @@ function filterInvert(data,i){
 function filterReceipt(data,i){
 
   let gray = rgbToGrayscale(data[i],data[i+1],data[i+2]);
+  gray = gray/255;
+
+  gray = Math.pow(gray,2);
+
+  gray = 3*gray*gray - 2*gray*gray*gray;
+  //gray = 3*gray*gray - 2*gray*gray*gray;
+  
+
+  //if(gray > Math.random()){gray=1;}else{gray=0;}
+
+  data[i] = ((gray) * (receiptColorRGB.r/255))*255;
+  data[i+1] = ((gray) * (receiptColorRGB.g/255))*255;
+  data[i+2] = ((gray) * (receiptColorRGB.b/255))*255;
+  data[i+3] = 255;
+
+  return data;
+}
+
+function filterReceiptOLD(data,i){
+
+  let gray = rgbToGrayscale(data[i],data[i+1],data[i+2]);
+
   data[i] = ((gray/255) * (receiptColorRGB.r/255))*255;
   data[i+1] = ((gray/255) * (receiptColorRGB.g/255))*255;
   data[i+2] = ((gray/255) * (receiptColorRGB.b/255))*255;
