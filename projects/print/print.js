@@ -28,8 +28,8 @@ function startCountdown() {
 }
 
 //on start
-const maxMessageLength = 2000
-const maxNewlines = 45
+const maxMessageLength = 1500;
+const maxNewlines = 35;
 const columnCount = 42;
 const pixelWidth = 512;
 const charSheetPath = "charsheet.png";
