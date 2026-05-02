@@ -27,6 +27,34 @@ function startCountdown() {
     }, 1000); // Update every second
 }
 
+function processFile(file){
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            let img = new Image();
+            img.onload = function() {
+                // Calculate the new dimensions while maintaining the aspect ratio
+                const maxWidth = 512;
+                const maxHeight = maxWidth*3;
+
+                let resizedImage = resizeMax(img,maxWidth,maxHeight);
+
+                // Convert the canvas to a Base64 string
+                let base64String = "base64img:" + resizedImage.toDataURL('image/jpeg').split(',')[1];
+
+                //set text
+                const textbox = document.getElementById("message");
+                textbox.value = base64String;
+
+                updatePreview();
+            };
+
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);  // This will read the image as a Data URL (Base64)
+    }
+}
+
 //on start
 const maxMessageLength = 1500;
 const maxNewlines = 35;
@@ -45,31 +73,12 @@ window.addEventListener('load',function(){
     document.getElementById('imageUploader').addEventListener('change', function(event) {
         //console.log(event.target.files.length);
         let file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                let img = new Image();
-                img.onload = function() {
-                    // Calculate the new dimensions while maintaining the aspect ratio
-                    const maxWidth = 512;
-                    const maxHeight = maxWidth*3;
+        processFile(file);
+    });
 
-                    let resizedImage = resizeMax(img,maxWidth,maxHeight);
-
-                    // Convert the canvas to a Base64 string
-                    let base64String = "base64img:" + resizedImage.toDataURL('image/jpeg').split(',')[1];
-
-                    //set text
-                    const textbox = document.getElementById("message");
-                    textbox.value = base64String;
-
-                    updatePreview();
-                };
-
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);  // This will read the image as a Data URL (Base64)
-        }
+    window.addEventListener('paste', e => {
+        let file = e.clipboardData.files[0];
+        processFile(file);
     });
 
     loadFont();
