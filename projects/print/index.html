@@ -27,37 +27,28 @@
 
 </div>
 
-<div class="margincenter">
+<div class="margin">
 
-    <div class ="flexbox">
-
-        <div class="flexsection" style="flex: 2; text-align: center;">
-            <div class="fileWrapper" style="width: 100%; height:96px;">
-                <p style="margin: 0px;">Drop an image here</p>
-                <input type="file" class="file" id="imageUploader" multiple="multiple" accept="image/*">
-            </div>
-
-            <p></p>
-
-            <textarea class="textarea" id="message" name="message" rows="4" cols="50" style="width: 100%; min-height: 100px;" placeholder="Hello World!"></textarea>
-
-            <p></p>
-
-            <p id="counter">characters</p>
-            <button class="butn" onclick="sendClicked();" id="gen" style="width: 50%; height: 64px; ">Send</button>
+    <div class="flexsection" style="flex: 2; text-align: center;">
+        <div class="fileWrapper" style="width: 100%; height:96px;">
+            <p style="margin: 0px;">Drop an image here</p>
+            <input type="file" class="file" id="imageUploader" multiple="multiple" accept="image/*">
         </div>
-    
+
+        <p></p>
+
+        <textarea class="textarea" id="message" name="message" rows="4" cols="50" style="width: 100%; min-height: 100px;" placeholder="Hello World!"></textarea>
+
+        <p></p>
+
+        <p id="counter">characters</p>
+        <button class="butn" onclick="sendClicked();" id="gen" style="width: 50%; height: 64px; ">Send</button>
     </div>
 
-
-    <div class ="flexbox">
-        <div class="flexsectioninvis" style="flex: 1; text-align: center; ">
-            <h2>Preview:</h2>
-            <canvas id="preview" width="536" height="48" style="max-width: 536px; width: 100%; height: auto;"></canvas>
-        </div>
+    <div class="flexsectioninvis" style="flex: 1; text-align: center; ">
+        <h2>Preview:</h2>
+        <canvas id="preview" width="536" height="48" style="max-width: 536px; width: 100%; height: auto;"></canvas>
     </div>
-
-
 
 </div>
 
