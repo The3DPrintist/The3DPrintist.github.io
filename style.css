@@ -24,7 +24,7 @@ body{
 	font-family: 'Inter';
 	font-weight: 250;
 	font-size: 1em;
-	line-height: 1.5em;
+	line-height: 1.25em;
     color: #F9F7ED;
 }
 
@@ -34,13 +34,106 @@ h1 {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size:48px;
-    font-weight: bold;
+
+    font-size: 3rem;
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 1.5rem;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 1rem;
+}
+
+.hl{
+    color: #f88001;
 }
 
 label{
     margin: 16px;
 }
+
+.butn {
+  background: transparent;
+  color: #F9F7ED;
+  border: 1px solid #F9F7ED;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: normal;
+  box-shadow:  0px 0px 8px #000000;
+}
+
+.butn:hover {
+    background: #F9F7ED;
+    color: #121212;
+    border-color: #F9F7ED;
+    transition: all 0.2s ease;
+    box-shadow:  0px 0px 8px #f88001;
+}
+
+.butnhl {
+    background: transparent;
+    color: #F9F7ED;
+    border: 2px solid #f88001;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.butnhl:hover {
+    background: #F9F7ED;
+    color: #121212;
+    border-color: #F9F7ED;
+    transition: all 0.2s ease;
+    box-shadow:  0px 0px 8px #f88001;
+}
+
+.butnimg {
+  background: transparent;
+  color: #F9F7ED;
+  border: 0px solid #F9F7ED;
+  border-radius: 10px;
+  padding: 15px 15px;
+  padding: 0.25rem;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.butnimg:hover {
+    background: #F9F7ED;
+    color: #121212;
+    border-color: #F9F7ED;
+    transition: all 0.2s ease;
+    box-shadow:  0px 0px 8px #f88001;
+}
+
+.butnimg img {
+    filter: invert(93%) sepia(4%) saturate(515%) hue-rotate(358deg) brightness(106%) contrast(95%);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.butnimg:hover img {
+    filter: invert(13%) sepia(19%) saturate(0%) hue-rotate(163deg) brightness(89%) contrast(100%);
+    
+}
+
 
 input{
     border-radius: 8px;
