@@ -150,13 +150,16 @@ label{
     filter: invert(13%) sepia(19%) saturate(0%) hue-rotate(163deg) brightness(89%) contrast(100%);
 }
 
+.taglist{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
 .engineicon{
     margin: 4px;
     height: auto;
     width: 2rem;
-    position: absolute;
-    top: 10px;
-    left: 10px;
     z-index: 10;
     pointer-events: none;
     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
