@@ -20,11 +20,32 @@ async function getImage(){
     }
 }
 
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
 window.addEventListener('load',function(){
 
     const pixelWidth = 512;
 
-    getImage();
+    if(findGetParameter("agree")=="true"){
+        const disclaimerPanel = document.getElementById("image");
+        disclaimerPanel.style.display="block";
+        getImage();
+    }else{
+        const disclaimerPanel = document.getElementById("disclaimer");
+        disclaimerPanel.style.display="block";
+    }
+
 
 
 
