@@ -4,13 +4,10 @@ async function sendData(data) {
         return false;
     }
 
-    let response = await fetch("https://print.zack3dprints.workers.dev/send", {
-        method: "POST",
-        body: data
-    });
+    let response;
 
     try {
-        let response = await fetch("https://print.zack3dprints.workers.dev/send", {method: "POST", body: data});
+        response = await fetch("https://print.zack3dprints.workers.dev/send", {method: "POST", body: data});
         if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
         }
