@@ -26,8 +26,8 @@ function startCountdown() {
         }
     }, 1000); // Update every second
 
-    const viewButton = document.getElementById('viewbutton');
-    viewButton.style.display = "inline-block";
+    //const viewButton = document.getElementById('viewbutton');
+    //viewButton.style.display = "inline-block";
 }
 
 function processFile(file){
